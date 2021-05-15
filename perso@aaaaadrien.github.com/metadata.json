@@ -3,7 +3,10 @@
   "description": "Extension GNOME Perso Adrien pour remplacer conky",
   "name": "Perso Adrien",
   "shell-version": [
-    "3.34.5"
+    "3.34",
+    "3.36",
+    "3.38",
+    "40"
   ],
   "url": "https://github.com/aaaaadrien",
   "uuid": "perso@aaaaadrien.github.com",
