@@ -1,3 +1,3 @@
 #! /bin/bash
 
-cp ./perso@aaaaadrien.github.com/ $HOME/.local/share/gnome-shell/extensions/
+cp -r ./perso@aaaaadrien.github.com/ $HOME/.local/share/gnome-shell/extensions/
