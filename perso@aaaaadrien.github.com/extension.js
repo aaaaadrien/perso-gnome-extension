@@ -1,4 +1,3 @@
-
 const GLib = imports.gi.GLib;
 const ShellToolkit = imports.gi.St;
 const Util = imports.misc.util;
@@ -33,27 +32,27 @@ function _get_radio()
 			command_output_bytes = new String(out[1]);
 			break;
 		case "uname" :
-			out = GLib.spawn_sync(null, ["bash","/home/adrien/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/uname.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","$HOME/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/uname.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "disk" :
-			out = GLib.spawn_sync(null, ["bash","/home/adrien/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/disk.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","$HOME/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/disk.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "sys" :
-			out = GLib.spawn_sync(null, ["bash","/home/adrien/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/sys.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","$HOME/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/sys.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "cpu" :
-			out = GLib.spawn_sync(null, ["bash","/home/adrien/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/cpu.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","$HOME/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/cpu.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "memory" :
-			out = GLib.spawn_sync(null, ["bash","/home/adrien/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/memory.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","$HOME/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/memory.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "net" :
-			out = GLib.spawn_sync(null, ["bash","/home/adrien/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/net.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","$HOME/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/net.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 	}
