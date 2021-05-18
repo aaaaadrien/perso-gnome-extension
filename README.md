@@ -12,4 +12,10 @@ Cependant, si vous voulez faire un PULL REQUEST pour intégrer des variables dan
 
 Installation :
 
-Mettre le dossier perso@aaaaadrien.github.com dans /home/$USER/.local/share/gnome-shell/extensions/
+Exécuter le script install.sh
+L'extension sera installée dans /home/$USER/.local/share/gnome-shell/extensions/
+Après installation, redémarrer sa session GNOME (ou Alt+F2 et saisir r puis Entrée si vous n'utilisez pas Wayland)
+Il sera nécessaire de l'activer via GNOME Ajustements ou GNOME Extension (à partir de GNOME40).
+
+Désinstallation
+Il suffit de supprimer le dossier perso@aaaaadrien.github.com dans /home/$USER/.local/share/gnome-shell/extensions
