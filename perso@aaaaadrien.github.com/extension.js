@@ -2,15 +2,20 @@ const GLib = imports.gi.GLib;
 const ShellToolkit = imports.gi.St;
 const Util = imports.misc.util;
 const Gio   = imports.gi.Gio;
-
+const Fs = require("fs");
 
 const Main = imports.ui.main;
 
+const script_files = Fs.readdirSync("./scripts").filter(file => file.endsWith(".sh"));
+
 let timer;
-var opt = "init";
+//var opt = "init";
+
+let script_index = 0;
 
 let out;
 let output = {};
+let command_output;
 
 let main_container_properties = { style_class: 'panel-button', reactive: true };
 let main_container = new ShellToolkit.Bin(main_container_properties);
@@ -18,6 +23,21 @@ let main_container = new ShellToolkit.Bin(main_container_properties);
 let main_container_content = new ShellToolkit.Label({ text: _get_radio() });
 let main_container_content_updater = function() { main_container_content.set_text(_get_radio()); };
 
+function _get_radio() {
+	out = GLib.spawn_sync(null, ["bash", "./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/" + script_files[script_index], "/"], null, GLib.SpawnFlags.SEARCH_PATH, null, null, null, output);
+	command_output = new String(out[1]);
+
+	script_index += 1;
+	//in case if script_index is out of range
+	if (script_index > script_files.length) {
+		script_index = 0
+    }
+
+	return command_output;
+}
+
+
+/*
 function _get_radio()
 {
 	var command_output_bytes;
@@ -96,28 +116,27 @@ function _get_radio()
 	}
 
 	
-	/*for (var current_character_index = 0; current_character_index < command_output_bytes.length; ++current_character_index)
-	{
-		var current_character = String.fromCharCode(command_output_bytes[current_character_index]);
-		command_output_string += current_character;
-	}
-	
-
+	//for (var current_character_index = 0; current_character_index < command_output_bytes.length; ++current_character_index)
+	//{
+	//	var current_character = String.fromCharCode(command_output_bytes[current_character_index]);
+	//	command_output_string += current_character;
+	//}
+	//
+	//
 	// UTF8 conversion
-	command_output_string = decodeURIComponent(escape(command_output_string));
-
-	return command_output_string.substring(0, command_output_string.length);*/
+	//command_output_string = decodeURIComponent(escape(command_output_string));
+	//
+	//return command_output_string.substring(0, command_output_string.length);
 	return command_output_string+command_output_bytes;
 }
+*/
 
-function init()
-{
+function init() {
 	main_container.set_child(main_container_content);
 	main_container.connect('button-press-event', main_container_content_updater);
 }
 
-function enable()
-{
+function enable() {
 	Main.panel._rightBox.insert_child_at_index(main_container, 0);
 	timer = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 5000, () => {
         	main_container_content.set_text(_get_radio());
@@ -126,8 +145,7 @@ function enable()
 
 }
 
-function disable()
-{
+function disable() {
 	Main.panel._rightBox.remove_child(main_container);
 }
 

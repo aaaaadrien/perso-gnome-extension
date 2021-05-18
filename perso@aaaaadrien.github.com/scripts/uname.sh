@@ -3,4 +3,4 @@
 # Uname
 uname=$(uname -sr)
 
-echo "$uname" | tr '\n' ' '
+echo "Noyau : $uname" | tr '\n' ' '

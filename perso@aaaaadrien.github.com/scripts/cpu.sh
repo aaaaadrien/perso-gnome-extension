@@ -10,4 +10,4 @@ cpusys=$(echo $vmstat | awk '{ print $14"%"; }')
 # Wait
 cpuwait=$(echo $vmstat | awk '{ print $16"%"; }')
 
-echo "$cpuused  ( U $cpuuser    S $cpusys    W $cpuwait )" | tr '\n' ' '
+echo "CPU : $cpuused  ( U $cpuuser    S $cpusys    W $cpuwait )" | tr '\n' ' '
