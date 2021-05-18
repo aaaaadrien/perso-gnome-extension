@@ -1,8 +1,0 @@
-#! /bin/bash
-
-# % Utilisé en fonction du point de montage passé en argument
-mount=$1
-
-res=$(LANG=C df -h $1 | tail -1 | awk '{ print $5; }')
-
-echo $res | tr '\n' ' '
