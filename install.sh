@@ -1,3 +1,3 @@
 #! /bin/bash
 
-cp -r ./perso@aaaaadrien.github.com $HOME/.local/share/gnome-shell/extensions/
+cp -r ./sys_monitor@linuxtricks.fr $HOME/.local/share/gnome-shell/extensions/

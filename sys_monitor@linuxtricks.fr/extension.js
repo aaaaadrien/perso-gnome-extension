@@ -32,31 +32,31 @@ function _get_radio()
 			command_output_bytes = new String(out[1]);
 			break;
 		case "uname" :
-			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/uname.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/sys_monitor@linuxtricks.fr/scripts/uname.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "disk" :
-			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/disk.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/sys_monitor@linuxtricks.fr/scripts/disk.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "sys" :
-			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/sys.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/sys_monitor@linuxtricks.fr/scripts/sys.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "cpu" :
-			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/cpu.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/sys_monitor@linuxtricks.fr/scripts/cpu.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "memory" :
-			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/memory.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/sys_monitor@linuxtricks.fr/scripts/memory.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
 		case "net_lan" :
-			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/net_lan.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/sys_monitor@linuxtricks.fr/scripts/net_lan.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
     case "net_wan" :
-  		out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/net_wan.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+  		out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/sys_monitor@linuxtricks.fr/scripts/net_wan.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
   		command_output_bytes = new String(out[1]);
   		break;
 	}
