@@ -1,0 +1,8 @@
+#! /bin/bash
+
+# Memoire
+res1=$(LANG=C free -h | head -2 | tail -1 | awk '{ print $3; }')
+# mémoire utilisée en %
+res2=$(LANG=C free -m | head -2 | tail -1 | awk '{ print "("int($3/$2*100) "%)"; }')
+
+echo "$res1 $res2" | tr '\n' ' '
