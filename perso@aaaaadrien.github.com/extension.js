@@ -1,12 +1,11 @@
 const GLib = imports.gi.GLib;
 const ShellToolkit = imports.gi.St;
 const Util = imports.misc.util;
-const Gio   = imports.gi.Gio;
-const Fs = require("fs");
+const Gio = imports.gi.Gio;
 
 const Main = imports.ui.main;
 
-const script_files = Fs.readdirSync("./scripts").filter(file => file.endsWith(".sh"));
+const script_files = read_dir("./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/").filter(file => file.endsWith(".sh"));
 
 let timer;
 //var opt = "init";
@@ -23,15 +22,35 @@ let main_container = new ShellToolkit.Bin(main_container_properties);
 let main_container_content = new ShellToolkit.Label({ text: _get_radio() });
 let main_container_content_updater = function() { main_container_content.set_text(_get_radio()); };
 
+function read_dir(path) {
+	const dir = Gio.File.new_for_path(path);
+	const list = [];
+
+	const enumerator = dir.enumerate_children('standard::*', 0, null);
+	let info = enumerator.next_file(null);
+
+	while (info) {
+		const child = enumerator.get_child(info);
+		const file_name = child.get_basename();
+
+		list.push(file_name)
+
+		info = enumerator.next_file(null);
+	}
+
+	return list;
+}
+
 function _get_radio() {
 	out = GLib.spawn_sync(null, ["bash", "./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/" + script_files[script_index], "/"], null, GLib.SpawnFlags.SEARCH_PATH, null, null, null, output);
-	command_output = new String(out[1]);
 
+	command_output = out[1].toString();
 	script_index += 1;
+
 	//in case if script_index is out of range
-	if (script_index > script_files.length) {
+	if (script_index >= script_files.length) {
 		script_index = 0
-    }
+	}
 
 	return command_output;
 }
@@ -115,7 +134,7 @@ function _get_radio()
 			opt = "init";
 	}
 
-	
+
 	//for (var current_character_index = 0; current_character_index < command_output_bytes.length; ++current_character_index)
 	//{
 	//	var current_character = String.fromCharCode(command_output_bytes[current_character_index]);
