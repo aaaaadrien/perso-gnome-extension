@@ -1,0 +1,22 @@
+#panel {
+    color: #ffffff;
+    font-family: MintSpirit, ubuntu, cantarell;
+    font-size: 1.0em;
+    font-weight: normal;
+    height: 1.55em;
+}
+
+.panel-button {
+    -natural-hpadding: 4px;
+    -minimum-hpadding: 4px;
+    font-family: MintSpirit, ubuntu, cantarrell;
+    font-weight: bold;
+    color: #ccc;
+    padding: 10px 1px;
+    transition-duration: 100;
+}
+
+.panel-button:hover {
+    color: white;
+    font-weight: bold;
+}
