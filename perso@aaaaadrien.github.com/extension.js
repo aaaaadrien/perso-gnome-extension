@@ -55,10 +55,6 @@ function _get_radio()
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/net.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
 			break;
-		case "ip" :
-			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/ip.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
-			command_output_bytes = new String(out[1]);
-			break;
 	}
 
 	var command_output_string;
@@ -93,10 +89,6 @@ function _get_radio()
 			break;
 		case "net" :
 			command_output_string = 'Adresse IP : ';
-			opt = "ip";
-			break;
-		case "ip" :
-			command_output_string = 'IP Publique : ';
 			opt = "init";
 			break;
 		default:
