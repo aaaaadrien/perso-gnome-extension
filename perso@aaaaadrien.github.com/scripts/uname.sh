@@ -1,6 +1,4 @@
 #! /bin/bash
 
-# Uname
-uname=$(uname -sr)
+echo "Noyau : $(uname -sr)" | tr '\n' ' '
 
-echo "Noyau : $uname" | tr '\n' ' '

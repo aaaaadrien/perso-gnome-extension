@@ -5,22 +5,23 @@ const Gio = imports.gi.Gio;
 
 const Main = imports.ui.main;
 
-const script_files = read_dir("./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/").filter(file => file.endsWith(".sh"));
+let script_files;
+let is_enable;
 
 let timer;
 //var opt = "init";
 
-let script_index = 0;
+let script_index;
 
 let out;
-let output = {};
+//let output = {};
 let command_output;
 
-let main_container_properties = { style_class: 'panel-button', reactive: true };
-let main_container = new ShellToolkit.Bin(main_container_properties);
+let main_container_properties;
+let main_container;
 
-let main_container_content = new ShellToolkit.Label({ text: _get_radio() });
-let main_container_content_updater = function() { main_container_content.set_text(_get_radio()); };
+let main_container_content;
+let main_container_content_updater;
 
 function read_dir(path) {
 	const dir = Gio.File.new_for_path(path);
@@ -42,7 +43,7 @@ function read_dir(path) {
 }
 
 function _get_radio() {
-	out = GLib.spawn_sync(null, ["bash", "./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/" + script_files[script_index], "/"], null, GLib.SpawnFlags.SEARCH_PATH, null, null, null, output);
+	out = GLib.spawn_sync(null, ["bash", "./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/" + script_files[script_index], "/"], null, GLib.SpawnFlags.SEARCH_PATH, null);
 
 	command_output = out[1].toString();
 	script_index += 1;
@@ -151,20 +152,31 @@ function _get_radio()
 */
 
 function init() {
+	script_files = read_dir("./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/").filter(file => file.endsWith(".sh"));
+	script_index = 0;
+	main_container_properties = { style_class: 'panel-button', reactive: true };
+	main_container = new ShellToolkit.Bin(main_container_properties);
+	main_container_content = new ShellToolkit.Label({ text: _get_radio() });
+	main_container_content_updater = function() { main_container_content.set_text(_get_radio()); };
+	is_enable = true;
+
 	main_container.set_child(main_container_content);
 	main_container.connect('button-press-event', main_container_content_updater);
 }
 
 function enable() {
+	init();
 	Main.panel._rightBox.insert_child_at_index(main_container, 0);
 	timer = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 5000, () => {
         	main_container_content.set_text(_get_radio());
-        	return true; // Repeat
+        	return is_enable; // Repeat
 	});
 
 }
 
 function disable() {
 	Main.panel._rightBox.remove_child(main_container);
+	is_enable = false;
+	timer = null;
 }
 

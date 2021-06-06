@@ -1,9 +1,4 @@
 #! /bin/bash
 
-# Auto detect lan interface based on the default route.
-lan_interface=$(ip route show default | awk '/default/ {print $5}')
+echo "Adresse IP : $(ip a show dev $(ip route show default | awk '/default/ {print $5}') | grep --color=none inet | grep -v inet6 | awk '{ print $2; }') | Adresse IP publique : $(curl -s ifconfig.me)" | tr '\n' ' '
 
-# IPV4 Address
-net4lan=$(ip a show dev $lan_interface | grep --color=none inet | grep -v inet6 | awk '{ print $2; }' )
-
-echo "Adresse IP : $net4lan" | tr '\n' ' '
