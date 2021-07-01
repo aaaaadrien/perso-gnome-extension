@@ -71,6 +71,12 @@ function _get_info()
 			command_output_string = 'Adresse IP : ';
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/net.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
+			opt = "sensor";
+			break;
+		case "sensor" :
+			command_output_string = 'Temp : ';
+			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/sensor.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
+			command_output_bytes = new String(out[1]);
 			opt = default_opt;
 			break;
 		default:
