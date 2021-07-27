@@ -30,13 +30,6 @@ function _get_info()
 			command_output_string = 'Test Adrien GNOME Extension';
 			opt = "uname";
 			break;
-		case "XX" :
-			command_output_string = 'Radio : ';
-			//command_output_bytes = GLib.spawn_command_line_sync('curl -s https://cluster.linuxtricks.fr/radio/api/song.php')[1];
-			out = GLib.spawn_sync(null, ["curl","-s", "https://cluster.linuxtricks.fr/radio/api/song.php"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
-			command_output_bytes = new String(out[1]);
-			opt = "XX";
-			break;
 		case "uname" :
 			command_output_string = 'Noyau : ';
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/uname.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
@@ -80,7 +73,7 @@ function _get_info()
 			opt = default_opt;
 			break;
 		default:
-			opt = default_opt;
+			opt = "title";
 	}
 
 	/*for (var current_character_index = 0; current_character_index < command_output_bytes.length; ++current_character_index)
