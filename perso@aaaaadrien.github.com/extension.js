@@ -20,6 +20,35 @@ let main_container = new ShellToolkit.Bin(main_container_properties);
 let main_container_content = new ShellToolkit.Label({ text: _get_info() });
 let main_container_content_updater = function() { main_container_content.set_text(_get_info()); };
 
+function _next_module(actualmodule)
+{
+var modules = ['title', 'uname', 'disk', 'sys', 'cpu', 'memory', 'net', 'sensor'];
+//var modulesenabled = ['title', 'uname', 'sys', 'cpu', 'memory', 'net', 'sensor'];
+var modulesenabledlist = new String(GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/get_modules_enabled.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output));
+var modulesenabled = modulesenabledlist.split(" ");
+var searchnextmodule=false;
+var nextmodulefound=false;
+var nextmodule;
+
+for (var i = 0 ; i < modulesenabled.length; i++ )
+{
+	if ( searchnextmodule )
+	{
+		if ( modules.includes(modulesenabled[i]) )
+		{
+			nextmodule=modulesenabled[i];
+			searchnextmodule=false;
+		}
+	}
+	if ( actualmodule == modulesenabled[i] )
+	{
+		searchnextmodule=true;
+	}
+}
+
+return nextmodule;
+}
+
 function _get_info()
 {
 	var command_output_string = "";
@@ -28,49 +57,57 @@ function _get_info()
 	switch (opt) {
 		case "title" :
 			command_output_string = 'Test Adrien GNOME Extension';
-			opt = "uname";
+			//opt = "uname";
+			opt=_next_module("title");
 			break;
 		case "uname" :
 			command_output_string = 'Noyau : ';
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/uname.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
-			opt = "disk";
+			//opt = "disk";
+			opt=_next_module("uname");
 			break;
 		case "disk" :
 			command_output_string = 'Disques : ';
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/disk.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
-			opt = "sys";
+			//opt = "sys";
+			opt=_next_module("disk");
 			break;
 		case "sys" :
 			command_output_string = 'Système : ';
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/sys.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
-			opt = "cpu";
+			//opt = "cpu";
+			opt=_next_module("sys");
 			break;
 		case "cpu" :
 			command_output_string = 'CPU : ';
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/cpu.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
-			opt = "memory";
+			//opt = "memory";
+			opt=_next_module("cpu");
 			break;
 		case "memory" :
 			command_output_string = 'Mémoire : ';
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/memory.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
-			opt = "net";
+			//opt = "net";
+			opt=_next_module("memory");
 			break;
 		case "net" :
 			command_output_string = 'Adresse IP : ';
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/net.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
-			opt = "sensor";
+			//opt = "sensor";
+			opt=_next_module("net");
 			break;
 		case "sensor" :
 			command_output_string = 'Temp : ';
 			out = GLib.spawn_sync(null, ["bash","./.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/scripts/sensor.sh"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,output);
 			command_output_bytes = new String(out[1]);
-			opt = default_opt;
+			//opt = default_opt;
+			opt=_next_module("sensor");
 			break;
 		default:
 			opt = "title";

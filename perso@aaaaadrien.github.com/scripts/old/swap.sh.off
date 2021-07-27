@@ -1,9 +1,0 @@
-#! /bin/bash
-
-# En français
-# Swap
-res1=$(LANG=C free -h | tail -1 | awk '{ print $3; }')
-# Swap utilisée en %
-res2=$(LANG=C free -m | tail -1 | awk '{ print "("int($3/$2*100) "%)"; }')
-
-echo "$res1 $res2" | tr '\n' ' '

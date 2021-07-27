@@ -1,6 +1,0 @@
-#! /bin/bash
-
-# Load Average
-res=$(cat /proc/loadavg | awk '{ print $1" "$2" "$3 }')
-
-echo $res | tr '\n' ' '
