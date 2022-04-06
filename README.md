@@ -1,16 +1,17 @@
 # Extension perso GNOME
 Extension personnelle pour GNOME SHELL qui affiche des vues différentes dans la barre des tâches. Les vues affichent des informations système.
 
+
+# NE PAS UTILISER CAR REFONTE PAS TERMINÉE
+
 Cette extension :
-- NE dispose PAS d'installer
 - N'est PAS à compiler
 - NE fonctionnera PAS chez vous sans être adaptée
-- est codée en MODE CRADO
 
 Cependant, si vous voulez faire un PULL REQUEST pour intégrer des variables dans mon code, c'est avec grand plaisir !
 
 
-Installation :
+Installation / Mise à jour :
 
 Exécuter le script install.sh
 L'extension sera installée dans $HOME/.local/share/gnome-shell/extensions/
@@ -25,13 +26,7 @@ Vous pouvez aussi supprimer le dossier perso@aaaaadrien.github.com dans $HOME/.l
 
 Configuration :
 
-Il suffit de personnaliser le fichier $HOME/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/modules-enabled.dat
-Indiquer sur chacune des lignes les modules à activer parmi : 
-title
-uname
-disk
-sys
-cpu
-memory
-net
-sensor
+Il suffit de personnaliser le fichier $HOME/.local/share/gnome-shell/extensions/perso@aaaaadrien.github.com/FICHIERAVENIR.sh
+
+
+Repo : https://github.com/aaaaadrien/perso-gnome-extension/
