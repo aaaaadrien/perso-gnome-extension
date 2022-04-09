@@ -18,7 +18,7 @@ let main_container_content_updater = function() { main_container_content.set_tex
 function _get_info()
 {
 	out = GLib.spawn_sync(null, ["bash","/home/adrien/.adrien/info-systeme.sh","/"], null, GLib.SpawnFlags.SEARCH_PATH,null,null,null,null);
-	return out.toString();
+	return out[1].toString();
 }
 
 function init()
